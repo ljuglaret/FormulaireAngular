@@ -7,22 +7,22 @@
         <h2> Question 1 </h2>
         <label for="choix1Q1">Choix1</label>
         <input type="radio" id="choix1Q1" name="question1"
-            value="1"[(ngModel)]="model.question1.rep1">
+            value=1 [(ngModel)]="model.listeQuestionsReponses[0].repFournie">
 
         <label for="choix2">Choix2</label>
         <input type="radio" id="choix1Q2" name="question1"
-          value= "2" [(ngModel)]="model.question1.rep1">
+          value= "2" [(ngModel)]="model.listeQuestionsReponses[0].repFournie">
       </div>
 
       <div class="form-group">
         <h2> Question 2 </h2>
         <label for="choix1Q2">Choix1</label>
         <input type="radio" id="choix1Q2" name="question2"
-            value=1 [(ngModel)]="model.question2">
+            value=1 [(ngModel)]="model.listeQuestionsReponses[1].repFournie">
 
         <label for="choix2Q2">Choix2</label>
         <input type="radio" id="choix2Q2" name="question2"
-          value= 2 [(ngModel)]="model.question2">
+          value= 2 [(ngModel)]="model.listeQuestionsReponses[1].repFournie">
       </div>
 
     
@@ -36,15 +36,28 @@
 
   <div [hidden]="!submitted">
     <h2>Vous avez envoyé</h2>
-    <div class="row">
-      <div class="col-xs-3">Question1</div>
-      <div class="col-xs-9">{{ model.question1.rep1 }}</div>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">Question 2 </div>
-    
-      <div class="col-xs-9">{{ model.question2}}</div>
-    </div>
+    <table >
+      <tr>
+        <th> Question </th>
+        <th> Votre reponse </th>
+        <th> La reponse attendue </th>
+      </tr>
+
+      <tr>
+        <td> Question 1                                              </td>
+        <td> {{ model.listeQuestionsReponses[0].repFournie }}        </td>
+        <td> {{ model.listeQuestionsReponses[0].repCorrecte }}       </td>
+      </tr>
+
+      <tr>
+        <td> Question 2                                             </td>
+        <td> {{ model.listeQuestionsReponses[1].repFournie }}        </td>
+        <td> {{ model.listeQuestionsReponses[1].repCorrecte }}       </td>
+      </tr>
+
+
+      </table>
+ 
 
     <br>
     <button class="btn btn-primary" (click)="submitted=false">Recommencer</button>

@@ -9,14 +9,18 @@ import { QCM } from '../qcm';
 })
 export class qcmFormComponent {
 
-  model = new QCM({rep1:'',repC:''},'','');
+  qcminitial = [{repFournie:null, repCorrecte:1},
+                {repFournie:null, repCorrecte:1}
+              ]
+
+  model =  new QCM(this.qcminitial);
 
   submitted = false;
 
   onSubmit() { this.submitted = true; }
 
   newqcm() {
-    this.model = new QCM({rep1:'',repC:''}, '');
+    this.model =  new QCM(this.qcminitial);
   }
 
 }
