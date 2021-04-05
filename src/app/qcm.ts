@@ -1,4 +1,4 @@
-type qr = {repFournie:number; repCorrecte:number};
+type qr = {numQuestion: number,repFournie:number; repCorrecte:number};
 
 export class QCM {
 

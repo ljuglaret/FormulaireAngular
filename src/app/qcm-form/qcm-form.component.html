@@ -3,12 +3,13 @@
     <h1>QCM</h1>
 
     <form (ngSubmit)="onSubmit()" #qcmForm="ngForm">
+
       <div class="form-group">
+
         <h2> Question 1 </h2>
         <label for="choix1Q1">Choix1</label>
         <input type="radio" id="choix1Q1" name="question1"
             value=1 [(ngModel)]="model.listeQuestionsReponses[0].repFournie">
-
         <label for="choix2">Choix2</label>
         <input type="radio" id="choix1Q2" name="question1"
           value= "2" [(ngModel)]="model.listeQuestionsReponses[0].repFournie">
