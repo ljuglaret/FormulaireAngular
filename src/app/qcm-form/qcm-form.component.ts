@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component , Input, Output, EventEmitter} from '@angular/core';
 import { NgModule } from '@angular/core';
 import { QCM } from '../qcm';
+import {QcmResultatComponent} from '../qcm-resultat/qcm-resultat.component';
+import { Routes, RouterModule, Router, RouterLink } from "@angular/router";
 
-function questionHtml(listeQuestionsReponses) {
-
-} 
 
 var stringToHTML = function (str) {
 	var parser = new DOMParser();
@@ -12,11 +11,11 @@ var stringToHTML = function (str) {
 	return doc.body;
 };
 
-
 @Component({
   selector: 'app-qcm-form',
  //templateUrl: './qcm-form.component.html',
   styleUrls: ['./qcm-form.component.css'],
+
   template: `
   <div class="container">
   <div [hidden]="submitted">
@@ -33,35 +32,46 @@ var stringToHTML = function (str) {
               value= 2 [(ngModel)]="this.qcminitial[in].repFournie"/>
         </div>
   </div>
-  <button type="submit" class="btn btn-success" [disabled]="!qcmForm.form.valid">Envoyer</button>
-  <button type="button" class="btn btn-default" (click)="newqcm(); qcmForm.reset()">Effacer</button>
+  <nav>
+  <a routerLink="/qcm-resultat" routerLinkActive="active">Correction</a>
+</nav>   
+
 </form>
 </div>
-  
    `
-})    //style="visibility:hidden;"
-
-
+})
 export class qcmFormComponent {
- 
-  
+  @Input()
+  reps = [];
+
+  @Output()
+  change: EventEmitter<any> = new EventEmitter();
+
+  increment() {
+    this.reps[0] = 5//this.qcminitial[0].repFournie ;
+    this.change.emit(this.reps);
+    //this.qcminitial[0].repFournie = 5;
+    this.change.emit(this.qcminitial);
+
+  }
 
   qcminitial = [{numQuestion: 0, repFournie:null, repCorrecte:1},
                 {numQuestion:1,repFournie:null, repCorrecte:1}
               ]
-
+  
   model =  new QCM(this.qcminitial);
 
   submitted = false;
 
   
-  onSubmit() { this.submitted = true;
+  onSubmit() { this.submitted = true; 
   
-
   }
 
   newqcm() {
     this.model =  new QCM(this.qcminitial);
   }
+  
+
 
 }
