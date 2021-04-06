@@ -1,5 +1,4 @@
 
-
 import { Component, Injectable, Input, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { QCM } from '../qcm';
@@ -9,16 +8,25 @@ import {qcmFormComponent} from '../qcm-form/qcm-form.component';
     providers:[qcmFormComponent],
     template : `
     <h2>Vous avez envoyé</h2>
-      <table *ngFor="let liste of this.param.qcminitial ; let in=index">
-        <tr>
-          <th> Question </th>
-          <th> Votre reponse </th>
-          <th> La reponse attendue </th>
-        </tr>
-        <tr>
-          <td> <input value = "Question{{in +1 }}">                                             </td>
-          <td> <input value = "{{ param.reps[in] }}">        </td>
-          <td> <input value = "{{ param.qcminitial[in].repCorrecte }}">     </td>
+      <table *ngFor="let liste of this.updateQcm.listeQuestionsReponses ; let in=index">
+  
+        <tr >
+          <h2> {{updateQcm.listeQuestionsReponses[in].intituleQuestion}} </h2>
+          
+           
+          <h2
+          [ngStyle]=" { 'background-color' : 
+                              updateQcm.listeQuestionsReponses[in].repFournie == updateQcm.listeQuestionsReponses[in].repCorrecte
+                              ? 'green' : 'red' 
+                      }"
+          >  
+      
+            {{ updateQcm.listeQuestionsReponses[in].choix[updateQcm.listeQuestionsReponses[in].repFournie] }}
+          
+          </h2>
+  
+          
+          
         </tr>
         
         </table>
@@ -30,11 +38,15 @@ import {qcmFormComponent} from '../qcm-form/qcm-form.component';
     `
   })
 
-export class QcmResultatComponent {
- 
 
-  constructor(public param: qcmFormComponent){param.increment();};
-  ngOnInit(): void {  
+
+  export class QcmResultatComponent {
+  updateQcm: any;
+
+  constructor(private dataService: QCM) { }
+  ngOnInit() {
+    this.dataService.getQcm().subscribe(info => {
+      this.updateQcm = info;
+    })
   }
-
 }

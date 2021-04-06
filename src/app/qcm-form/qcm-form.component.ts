@@ -5,11 +5,6 @@ import {QcmResultatComponent} from '../qcm-resultat/qcm-resultat.component';
 import { Routes, RouterModule, Router, RouterLink } from "@angular/router";
 
 
-var stringToHTML = function (str) {
-	var parser = new DOMParser();
-	var doc = parser.parseFromString(str, 'text/html');
-	return doc.body;
-};
 
 @Component({
   selector: 'app-qcm-form',
@@ -23,43 +18,28 @@ var stringToHTML = function (str) {
   <form (ngSubmit)="onSubmit()" #qcmForm="ngForm">
    <div *ngFor="let liste of this.qcminitial; let in=index" >
         <div class="form-group">        
-            <h2> Question {{in}} </h2>
-            <label for="choix1Q{{in}}">Choix1</label>
+            <h2 >Question {{this.qcminitial[in].numQuestion + 1}}</h2>
+            <label for="choix1Q{{in}}">{{this.qcminitial[in].choix[0]}}</label>
             <input type="radio" id="choix1Q{{in}}" name="question{{in}}"
-                value=1 [(ngModel)]="this.qcminitial[in].repFournie">
-            <label for="choix2">Choix2</label>
+                value=0 [(ngModel)]="this.qcminitial[in].repFournie">
+            <label for="choix2">{{this.qcminitial[in].choix[1]}}</label>
             <input type="radio" id="choix1Q{{in}}" name="question{{in}}"
-              value= 2 [(ngModel)]="this.qcminitial[in].repFournie"/>
+              value= 1 [(ngModel)]="this.qcminitial[in].repFournie"/>
         </div>
   </div>
   <nav>
-  <a routerLink="/qcm-resultat" routerLinkActive="active">Correction</a>
+  <a (click)="submitBtn()" routerLink="/qcm-resultat" routerLinkActive="active">Correction</a>
 </nav>   
-
-</form>
-</div>
    `
 })
 export class qcmFormComponent {
-  @Input()
-  reps = [];
-
-  @Output()
-  change: EventEmitter<any> = new EventEmitter();
-
-  increment() {
-    this.reps[0] = 5//this.qcminitial[0].repFournie ;
-    this.change.emit(this.reps);
-    //this.qcminitial[0].repFournie = 5;
-    this.change.emit(this.qcminitial);
-
-  }
-
-  qcminitial = [{numQuestion: 0, repFournie:null, repCorrecte:1},
-                {numQuestion:1,repFournie:null, repCorrecte:1}
+  constructor(private dataService: QCM) { }
+  qcminitial = [{intituleQuestion: "q1", numQuestion: 0, repFournie:null, repCorrecte:0, choix:["q1c1", "q1c2"]},
+                {intituleQuestion: "q2",numQuestion:1,repFournie:null, repCorrecte:1,choix:["q2c1", "q2c2"]}
               ]
+
   
-  model =  new QCM(this.qcminitial);
+  model =  new QCM();
 
   submitted = false;
 
@@ -69,7 +49,18 @@ export class qcmFormComponent {
   }
 
   newqcm() {
-    this.model =  new QCM(this.qcminitial);
+    this.model =  new QCM();
+  }
+
+  submitBtn() {
+    this.dataService.setQcm({
+    listeQuestionsReponses :
+    [{intituleQuestion:this.qcminitial[0].intituleQuestion, numQuestion: 0, repFournie: this.qcminitial[0].repFournie, repCorrecte:this.qcminitial[0].repCorrecte,choix:this.qcminitial[0].choix},
+        {intituleQuestion:this.qcminitial[1].intituleQuestion,numQuestion:1,repFournie: this.qcminitial[1].repFournie, repCorrecte:this.qcminitial[1].repCorrecte,choix:this.qcminitial[1].choix}
+    ]
+    }
+  
+    );
   }
   
 

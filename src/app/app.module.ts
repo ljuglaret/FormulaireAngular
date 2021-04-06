@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { qcmFormComponent } from './qcm-form/qcm-form.component';
 import {QcmResultatComponent} from './qcm-resultat/qcm-resultat.component';
+import { QCM } from './qcm';
 
 const appRoutes: Routes = [
   { path: 'qcm-resultat', component: QcmResultatComponent },
@@ -24,7 +25,7 @@ const appRoutes: Routes = [
     qcmFormComponent,
     QcmResultatComponent
   ],
-  providers: [qcmFormComponent],
+  providers: [QCM],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
