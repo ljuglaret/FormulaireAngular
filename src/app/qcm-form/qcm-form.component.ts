@@ -3,7 +3,6 @@ import { QCM , qr} from '../qcm';
 import data from '../donnees/qcm.json';
 
 
-
 @Component({
   selector: 'app-qcm-form',
   styleUrls: ['./qcm-form.component.css'],
@@ -11,7 +10,6 @@ import data from '../donnees/qcm.json';
   template: `
   <div class="container">
   <div [hidden]="submitted">
-    <h1>QCM</h1>
   <form (ngSubmit)="onSubmit()" #qcmForm="ngForm">
    <div *ngFor="let liste of this.qcminitial; let in=index" >
         <div class="form-group">        
@@ -40,11 +38,10 @@ import data from '../donnees/qcm.json';
 
 
 export class qcmFormComponent {
-
   constructor(private dataService: QCM) {  
-  } qcminitial :qr[] = data;
-  
-
+  }
+  qcminitial :qr[] = data;
+  qcmCommence =true;
   
   model =  new QCM();
 

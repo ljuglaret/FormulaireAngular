@@ -14,7 +14,10 @@ export class QCM {
     {
       listeQuestionsReponses:[]
     }
+
   );
+  private qcmCommence =  new BehaviorSubject<any>(false);
+
 
   setQcm(qcm: any) {
     this.newQcm.next(qcm);
