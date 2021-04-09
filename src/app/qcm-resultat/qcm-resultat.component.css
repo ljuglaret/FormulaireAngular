@@ -1,0 +1,12 @@
+.box {
+    display: grid;
+    width: 900 px;
+    grid-template-columns: 300px 300px 300px;
+    align-items: start;
+    justify-content: space-between;
+  }
+  
+  .box :first-child {
+      align-self: center;
+  }
+

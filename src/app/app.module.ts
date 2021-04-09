@@ -7,6 +7,7 @@ import { qcmFormComponent } from './qcm-form/qcm-form.component';
 import {QcmResultatComponent} from './qcm-resultat/qcm-resultat.component';
 import { QCM } from './qcm';
 
+
 const appRoutes: Routes = [
   { path: 'qcm-resultat', component: QcmResultatComponent },
   { path: 'qcm-form', component: qcmFormComponent }

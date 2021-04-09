@@ -1,38 +1,51 @@
 
-import { Component, Injectable, Input, OnInit } from '@angular/core';
-import { NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { QCM } from '../qcm';
 import {qcmFormComponent} from '../qcm-form/qcm-form.component';
-  @Component({
+  @Component({ 
     selector : "resultat",
     providers:[qcmFormComponent],
+    styleUrls:['qcm-resultat.component.css'],
     template : `
-    <h2>Vous avez envoyé</h2>
-      <table *ngFor="let liste of this.updateQcm.listeQuestionsReponses ; let in=index">
+     <h1 [ngStyle] = "{'text-align' : 'center'}">Correction</h1>
+      <div ngClass="box" *ngFor="let liste of this.updateQcm.listeQuestionsReponses ; let in=index">
   
-        <tr >
-          <h2> {{updateQcm.listeQuestionsReponses[in].intituleQuestion}} </h2>
+        
+          <div><h2> {{updateQcm.listeQuestionsReponses[in].intituleQuestion}} </h2></div>
           
            
-          <h2
-          [ngStyle]=" { 'background-color' : 
+          <div>
+            <h2
+              [ngStyle] = "{'background-color' : 
                               updateQcm.listeQuestionsReponses[in].repFournie == updateQcm.listeQuestionsReponses[in].repCorrecte
                               ? 'green' : 'red' 
-                      }"
-          >  
-      
-            {{ updateQcm.listeQuestionsReponses[in].choix[updateQcm.listeQuestionsReponses[in].repFournie] }}
+                      }" 
+            >  
+            {{ updateQcm.listeQuestionsReponses[in].choix[
+                updateQcm.listeQuestionsReponses[in].repFournie
+              ]}}
           
-          </h2>
+          </h2></div>
   
+          <div>
+            <h2
+              [ngStyle] = "{'visibility' : 
+                              updateQcm.listeQuestionsReponses[in].repFournie == updateQcm.listeQuestionsReponses[in].repCorrecte
+                              ? 'hidden' : 'visible' 
+                      }" 
+            >  
+            {{ updateQcm.listeQuestionsReponses[in].choix[
+                updateQcm.listeQuestionsReponses[in].repCorrecte
+              ]}}
           
+          </h2></div>
           
-        </tr>
         
-        </table>
+        
+        </div>
       <br>
       <nav>
-  <a routerLink="/qcm-form" routerLinkActive="active">Recommence</a>
+  <a routerLink="/qcm-form" routerLinkActive="active">Recommencer</a>
 </nav>     
     
     `

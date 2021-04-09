@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs';
 
 
-type qr = {numQuestion: number,repFournie:number; repCorrecte:number,choix:string[]};
+export type qr = {numQuestion: number,intituleQuestion:string,repFournie:number; repCorrecte:number,choix:string[]};
 
 @Injectable()
 export class QCM {
@@ -12,7 +12,7 @@ export class QCM {
 
   private newQcm = new BehaviorSubject<any>(
     {
-      listeQuestionsReponses:[    ]
+      listeQuestionsReponses:[]
     }
   );
 

@@ -1,0 +1,13 @@
+[{
+    "intituleQuestion" : "Quel mammifère marin est un cousin de l'éléphant ",
+    "numQuestion" : 0,
+    "repFournie" : null,
+    "repCorrecte" : 0,
+    "choix" : [
+        "La baleine",
+	    "L'éléphant de mer",
+	    "Le lamantin",
+	    "Le poisson-éléphant"
+    ]
+    }
+]
