@@ -1,3 +1,19 @@
 tr{
   text-align: center;
 }
+
+.box {
+  display: grid;
+  width: 900 px;
+  grid-template-columns: 400px 500px ;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.box :first-child {
+    align-self: center;
+}
+
+img{
+  width : 400px;
+}
