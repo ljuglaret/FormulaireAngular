@@ -2,12 +2,52 @@
     "intituleQuestion" : "Quel mammifère marin est un cousin de l'éléphant ",
     "numQuestion" : 0,
     "repFournie" : null,
-    "repCorrecte" : 0,
+    "repCorrecte" : 2,
     "choix" : [
         "La baleine",
 	    "L'éléphant de mer",
 	    "Le lamantin",
 	    "Le poisson-éléphant"
     ]
-    }
+    },
+    {
+        "intituleQuestion" : "Combien de pattes possèdent les insectes ?  ",
+        "numQuestion" : 1,
+        "repFournie" : null,
+        "repCorrecte" : 1,
+        "choix" : [
+            "4",
+            "6",
+            "8",
+            "10"
+        ]
+        },
+
+    {
+        "intituleQuestion" : "Combien une étoile de mer a-t-elle habituellement de bras ?    ",
+        "numQuestion" : 2,
+        "repFournie" : null,
+        "repCorrecte" : 1,
+        "choix" : [
+            "4",
+            "5",
+            "6",
+            "7"
+        ]
+        },
+
+    {
+        "intituleQuestion" : "Comment appelle-t-on également les bois du cerf ?     ",
+        "numQuestion" : 3,
+        "repFournie" : null,
+        "repCorrecte" : 0,
+        "choix" : [
+            "Les andouillers",
+            "Les cornes",
+            "Les défenses",
+            "Les branches"
+        ]
+        }
+
+
 ]

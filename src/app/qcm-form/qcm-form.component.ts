@@ -6,7 +6,6 @@ import data from '../donnees/qcm.json';
 
 @Component({
   selector: 'app-qcm-form',
- //templateUrl: './qcm-form.component.html',
   styleUrls: ['./qcm-form.component.css'],
 
   template: `
@@ -18,17 +17,17 @@ import data from '../donnees/qcm.json';
         <div class="form-group">        
             <h2 >{{this.qcminitial[in].intituleQuestion}}</h2>
             
-            <label for="choix1Q{{in}}">{{this.qcminitial[in].choix[0]}}</label>
-            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value=0 [(ngModel)]="this.qcminitial[in].repFournie">
+            <div><label for="choix1Q{{in}}">{{this.qcminitial[in].choix[0]}}</label>
+            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value=0 [(ngModel)]="this.qcminitial[in].repFournie"></div>
             
-            <label for="choix2">{{this.qcminitial[in].choix[1]}}</label>
-            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value= 1 [(ngModel)]="this.qcminitial[in].repFournie"/>
+            <div><label for="choix2">{{this.qcminitial[in].choix[1]}}</label>
+            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value= 1 [(ngModel)]="this.qcminitial[in].repFournie"/></div>
             
-            <label for="choix3">{{this.qcminitial[in].choix[2]}}</label>
-            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value= 2 [(ngModel)]="this.qcminitial[in].repFournie"/>
+            <div><label for="choix3">{{this.qcminitial[in].choix[2]}}</label>
+            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value= 2 [(ngModel)]="this.qcminitial[in].repFournie"/></div>
             
-            <label for="choix4">{{this.qcminitial[in].choix[3]}}</label>
-            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value= 3 [(ngModel)]="this.qcminitial[in].repFournie"/>
+            <div><label for="choix4">{{this.qcminitial[in].choix[3]}}</label>
+            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value= 3 [(ngModel)]="this.qcminitial[in].repFournie"/></div>
 
         </div>
   </div>
@@ -41,15 +40,10 @@ import data from '../donnees/qcm.json';
 
 
 export class qcmFormComponent {
-  //qcminitial : qr[] ;
 
   constructor(private dataService: QCM) {  
-  } qcminitial :qr[] = [data[0],data[0]];
-  /*qcminitial : qr [] = 
-    [
-      {intituleQuestion: "q1", numQuestion: 0, repFournie:null, repCorrecte:0, choix:["q1c1", "q1c2"]},
-      {intituleQuestion: "q2",numQuestion:1,repFournie:null, repCorrecte:1,choix:["q2c1", "q2c2"]}
-    ]*/
+  } qcminitial :qr[] = data;
+  
 
   
   model =  new QCM();
@@ -67,7 +61,7 @@ export class qcmFormComponent {
 
   listeAEnvoyer(): qr[]{
     var l: qr[] = []; 
-    for (let i =  0 ; i < 2 ; i++){
+    for (let i =  0 ; i < data.length ; i++){
       l[i] = {
         intituleQuestion:this.qcminitial[i].intituleQuestion,
         numQuestion: i, repFournie: this.qcminitial[i].repFournie,
