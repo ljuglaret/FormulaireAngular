@@ -51,11 +51,11 @@ export class qcmFormComponent {
   model =  new QCM();
 
   listeImages = [
-    "https://static.teteamodeler.com/media/cache/thumb_400/elephant-explication-tete-a-modeler-du-mot-elephant.png",
-    "https://www.mexique-voyages.com/wp-content/uploads/adobestock-293077837-1280x800.jpeg",
-    "https://images-na.ssl-images-amazon.com/images/I/71XkzlbxEbL._AC_SL1001_.jpg",
-    "https://cdn.radiofrance.fr/s3/cruiser-production/2016/08/be123547-b500-4b59-aeb3-d0e9a85fa1cc/838_f-g_grandin_fgg_4533.jpg"
-  ]
+    "assets/img/elephant.jpg",
+   "assets/img/papillon.jpeg" ,
+   "assets/img/edm.jpg" ,
+   "assets/img/cerf.jpg" 
+    ]
   submitted = false;
   onSubmit() { this.submitted = true; 
   

@@ -24,18 +24,18 @@
         },
 
     {
-        "intituleQuestion" : "Combien une étoile de mer a-t-elle habituellement de bras ?    ",
+        "intituleQuestion" : "Que mange une étoile de mer ?    ",
         "numQuestion" : 2,
         "repFournie" : null,
         "repCorrecte" : 1,
         "choix" : [
-            "4",
-            "5",
-            "6",
-            "7"
+            "des algues",
+            "des coquillages",
+            "des poissons",
+            "rien"
         ]
         },
-
+        
     {
         "intituleQuestion" : "Comment appelle-t-on également les bois du cerf ?     ",
         "numQuestion" : 3,
