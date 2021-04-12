@@ -5,9 +5,9 @@ import { QCM } from './qcm';
   selector: 'app-root',
   template:`
   <body >
-    <div *ngIf="!qcmCommence">
+    <div style="margin-top: 25%; margin-left:25%" *ngIf="!qcmCommence">
     <h1 >Bienvenue dans ce questionnaire animalier</h1>
-    <nav   >
+    <nav  style=" margin-left:25%" >
       <a (click)="qcmCommence= !qcmCommence" routerLink="/qcm-form"
           routerLinkActive="active"
       > Debuter QCM</a>

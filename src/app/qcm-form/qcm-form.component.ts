@@ -14,23 +14,15 @@ import data from '../donnees/qcm.json';
   <div *ngFor="let liste of this.qcminitial; let in=index ; " >
         <div ngClass="box" class="form-group">        
           <div > 
-            <img [src] = listeImages[in] />
+            <img [src] = listeImages[this.qcminitial[in].numQuestion] />
           </div>
-          <div>
+          <div >
             <h2 >{{this.qcminitial[in].intituleQuestion}}</h2>
             
-            <div><label for="choix1Q{{in}}">{{this.qcminitial[in].choix[0]}}</label>
-            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value=0 [(ngModel)]="this.qcminitial[in].repFournie"></div>
+            <div *ngFor="let listeRep of this.qcminitial[in].choix; let numChoix = index ; "><label for="choix{{numChoix}}Q{{in}}">{{this.qcminitial[in].choix[numChoix]}}</label>
+            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value= {{numChoix}} [(ngModel)]="this.qcminitial[in].repFournie"></div>
               
-            <div><label for="choix2">{{this.qcminitial[in].choix[1]}}</label>
-            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value= 1 [(ngModel)]="this.qcminitial[in].repFournie"/></div>
-              
-            <div><label for="choix3">{{this.qcminitial[in].choix[2]}}</label>
-            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value= 2 [(ngModel)]="this.qcminitial[in].repFournie"/></div>
-              
-            <div><label for="choix4">{{this.qcminitial[in].choix[3]}}</label>
-            <input type="radio" id="choix1Q{{in}}" name="question{{in}}" value= 3 [(ngModel)]="this.qcminitial[in].repFournie"/></div>
-
+          
           </div>
         </div>
     </div>
@@ -41,14 +33,37 @@ import data from '../donnees/qcm.json';
 })
 
 
-
 export class qcmFormComponent {
   constructor(private dataService: QCM) {  
   }
-  qcminitial :qr[] = data;
-  qcmCommence =true;
   
+  qcmCommence = true;
+  qcminitial = data;
+
+/* [{1,a,true} , {2,d,false}] => [{2,d,false},{1,a,true} , {2,d,false}]* */
+f () : qr[]{
+  var liste: qr[] = [];
+  var posAleatoires: number[] = [];
+  var taille = this.qcminitial.length ;
+  while(posAleatoires.length < taille){
+    var posAleatoire =  Math.floor(Math.random() * this.qcminitial.length ) ;
+    if(!posAleatoires.includes(posAleatoire)){
+      posAleatoires.push(posAleatoire);
+      liste.push(this.qcminitial[posAleatoire]);
+      this.qcminitial[posAleatoire].repFournie = null;
+    }
+  }
+  return liste;
+}
+
+  ngOnInit() {
+    this.qcminitial = this.f();
+
+
+  }
+
   model =  new QCM();
+
 
   listeImages = [
     "assets/img/elephant.jpg",
@@ -65,13 +80,18 @@ export class qcmFormComponent {
     this.model =  new QCM();
   }
 
+
+
+
   listeAEnvoyer(): qr[]{
     var l: qr[] = []; 
     for (let i =  0 ; i < data.length ; i++){
       l[i] = {
         intituleQuestion:this.qcminitial[i].intituleQuestion,
-        numQuestion: i, repFournie: this.qcminitial[i].repFournie,
-        repCorrecte:this.qcminitial[i].repCorrecte,choix:this.qcminitial[i].choix
+        numQuestion: this.qcminitial[i].numQuestion,
+        repFournie: this.qcminitial[i].repFournie,
+        repCorrecte:this.qcminitial[i].repCorrecte,
+        choix:this.qcminitial[i].choix
       }
     }
     return l;
@@ -79,12 +99,7 @@ export class qcmFormComponent {
 
   submitBtn() {
     this.dataService.setQcm({
-    listeQuestionsReponses : this.listeAEnvoyer()
-    }
-  
-    );
+      listeQuestionsReponses : this.listeAEnvoyer()
+    });
   }
-  
-
-
 }

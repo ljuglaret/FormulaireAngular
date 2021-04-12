@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { QCM } from '../qcm';
+import { QCM , qr} from '../qcm';
 import {qcmFormComponent} from '../qcm-form/qcm-form.component';
   @Component({ 
     selector : "resultat",
@@ -45,9 +45,8 @@ import {qcmFormComponent} from '../qcm-form/qcm-form.component';
         </div>
       <br>
       <nav>
-  <a routerLink="/qcm-form" routerLinkActive="active">Recommencer</a>
-</nav>     
-    
+  <a (click)="recommencer()" routerLink="/qcm-form" routerLinkActive="active">Recommencer</a>
+</nav> 
     `
   })
 
@@ -59,7 +58,14 @@ import {qcmFormComponent} from '../qcm-form/qcm-form.component';
   constructor(private dataService: QCM) { }
   ngOnInit() {
     this.dataService.getQcm().subscribe(info => {
-      this.updateQcm = info;
+     this.updateQcm = info;
     })
+  }
+
+
+  recommencer() {
+    this.dataService.setQcm({
+      listeQuestionsReponses :this.updateQcm()
+    });
   }
 }
